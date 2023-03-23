@@ -2,27 +2,33 @@ import { Locator, Page } from "@playwright/test";
 import { AbstractComponent } from "./abstract-component";
 
 export class NavigationBar extends AbstractComponent {
+    readonly logo: Locator;
+    readonly sweetsBtn: Locator;
+    readonly aboutBtn: Locator;
+    readonly loginBtn: Locator;
+    readonly basketBtn: Locator;
 
-    private barWrapper: Locator;
-    private imagesBtn: Locator;
-    private newsBtn: Locator;
-
-    constructor(page: Page) {
-        super(page);
-        this.barWrapper = super.page.locator('#hdtb');
-        this.imagesBtn = this.barWrapper.locator('a', { hasText: 'Images' });
-        this.newsBtn = this.barWrapper.locator('a', { hasText: 'News' });
+    constructor(page: Page, barWrapper: Locator) {
+        super(page, barWrapper);
+        this.sweetsBtn = this.wrapperElement.locator('a', { hasText: 'Sweets' });
+        this.aboutBtn = this.wrapperElement.locator('a', { hasText: 'About' });
+        this.loginBtn = this.wrapperElement.locator('a', { hasText: 'Login' });
+        this.basketBtn = this.wrapperElement.locator('a', { hasText: 'Basket' });
     }
 
-    public async goToImages() {
-        await this.imagesBtn.click();
+    public async goToSweets() {
+        await this.sweetsBtn.click();
     }
 
-    public async goToNews() {
-        await this.newsBtn.click();
+    public async goToAbout() {
+        await this.aboutBtn.click();
     }
 
-    public async isVisible(): Promise<boolean> {
-        return await this.barWrapper.isVisible();
+    public async goToLogin() {
+        await this.loginBtn.click();
+    }
+
+    public async goToBasket() {
+        await this.basketBtn.click();
     }
 }

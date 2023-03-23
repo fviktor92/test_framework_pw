@@ -12,7 +12,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    actionTimeout: 30,
+    actionTimeout: 30 * 1000,
     trace: 'on-first-retry',
   },
   projects: [
